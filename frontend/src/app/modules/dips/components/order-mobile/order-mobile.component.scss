@@ -1,0 +1,132 @@
+:host {
+  position: relative;
+  transform: translateX(42px);
+}
+
+app-search-mobile ~ :host {
+  transform: unset;
+}
+
+.img-container {
+  height: 28px;
+  width: 28px;
+  box-shadow: 0 1px 4px #e5e9f2;
+  background-color: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg.active {
+    path {
+      fill: #2f80ed;
+    }
+  }
+}
+
+.content {
+  position: absolute;
+  width: 142px;
+  z-index: 2;
+  padding: 30px 20px 20px;
+  background: #ffffff;
+  box-shadow: 0px 30px 60px #e5e9f2;
+  border-radius: 5px;
+  text-align: left;
+  margin-top: 6px;
+  top: 100%;
+  right: 0;
+
+  &.content-dark::ng-deep {
+    background: #0e1521;
+    box-shadow: none;
+
+    input:checked ~ svg > path {
+      fill: #ebedf4 !important;
+    }
+
+    input:checked ~ .label {
+      color: #ebedf4 !important;
+    }
+
+    input:not(:checked) ~ svg > path {
+      fill: #748aa1 !important;
+    }
+
+    input:not(:checked) ~ .label {
+      color: #748aa1 !important;
+    }
+
+    .reset {
+      box-shadow: none !important;
+      background-color: #0e1521 !important;
+      color: #505f7c !important;
+      border: 1px solid #505f7c !important;
+    }
+  }
+
+  p {
+    font-weight: bold;
+    font-size: 12px;
+    color: #748aa1;
+    margin-bottom: 30px;
+    margin-top: 0;
+    padding-left: 10px;
+  }
+
+  hr {
+    border: 1px solid #b8c5d3;
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    margin-top: 36px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn {
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Roboto;
+    width: 63px;
+    min-width: 63px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+  }
+
+  .reset {
+    box-shadow: 0px 30px 60px #e5e9f2;
+    color: #31394d;
+    border: 1px solid #31394d;
+  }
+
+  .apply {
+    background-color: #2f80ed;
+    border: 1px solid #2f80ed;
+    box-sizing: border-box;
+    color: #ffffff;
+  }
+}
+
+app-md-radio-button {
+  display: block;
+  margin-bottom: 17px;
+}
+
+.arrow {
+  position: absolute;
+  left: 58%;
+}
+
+.up {
+  transform: rotate(180deg);
+}
+
+input:checked ~ .arrow {
+  path {
+    fill: #31394d;
+  }
+}

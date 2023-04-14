@@ -1,0 +1,172 @@
+{
+  "dip": {
+    "components": [
+      {
+        "cName": "DIP6c1",
+        "cTitle": "Process Overview",
+        "cBody": "Provides an overview of the collateral application form submission process, which includes location, involved stakeholders, and the next phase."
+      },
+      {
+        "cName": "DIP6c2",
+        "cTitle": "Application Template",
+        "cBody": "Provides a collateral application form template to be used in the submission process defined in DIP6c1."
+      },
+      {
+        "cName": "DIP6c3",
+        "cTitle": "Application Template Amendment Process",
+        "cBody": "A process component that defines a method and template to amend the collateral application form template defined in DIP6c2."
+      }
+    ],
+    "references": [
+      {
+        "name": "DIP6c2-Collateral-Application-Template.md",
+        "link": "DIP6c2-Collateral-Application-Template.md"
+      },
+      {
+        "name": "DIP6c3-Subproposal-Template.md",
+        "link": "DIP6c3-Subproposal-Template.md"
+      }
+    ],
+    "sectionsRaw": [
+      "# DIP6: Collateral Onboarding Application\n\n",
+      "## Preamble\n\n",
+      "```\nDIP#: 6\nTitle: Collateral Onboarding Application\nAuthor(s): Charles St.Louis (@CPSTL), Rune Christensen (@Rune23)\nContributors: @LongForWisdom, Leo Jsaraceno (Mitote), Helge Andreas Qvam (@planet_X)\nTags: process, collateral-onboarding, dip-set, collateral-onboarding-dipset\nType: Process\nStatus: Accepted\nDate Proposed: 2020-04-06\nDate Ratified: 2020-05-02\nLast Amended: 2020-06-25\nDependencies: n/a\nReplaces: n/a\nRatification Poll URL:\nForum URL: https://forum.makerdao.com/t/dip6-collateral-onboarding-form-forum-template/1908\nExtra: This DIP has been amended. See [DIP4c2-SP1](https://dips.makerdao.com/dips/details/DIP4c2SP1). The original version can be found [here](https://github.com/makerdao/dips/blob/977f0fbf2943252659145156ddae7e657246ecac/DIP6/dip6.md).\n```\n\n",
+      "## References\n\n",
+      "**[DIP6c2-Collateral-Application-Template.md](DIP6c2-Collateral-Application-Template.md)**\n**[DIP6c3-Subproposal-Template.md](DIP6c3-Subproposal-Template.md)**",
+      "\n\n",
+      "## Sentence Summary\n\n",
+      "DIP6 defines a standardized application form used to kick off the process of onboarding a new collateral asset to the Maker Protocol.",
+      "\n\n",
+      "## Paragraph Summary\n\n",
+      "The purpose of this proposal is to standardize the collateral onboarding application template that community members and third-party projects can use to begin the process of getting their collateral onboarded to the Maker Protocol.",
+      "\n\n",
+      "## Component Summary\n\n",
+      "**DIP6c1: Process Overview**\nProvides an overview of the collateral application form submission process, which includes location, involved stakeholders, and the next phase.",
+      "\n\n",
+      "**DIP6c2: Application Template**\nProvides a collateral application form template to be used in the submission process defined in [DIP6c1](dips/details/DIP6#DIP6c1 \"smart-Component\").",
+      "\n\n",
+      "**DIP6c3: Application Template Amendment Process**\nA process component that defines a method and template to amend the collateral application form template defined in [DIP6c2](dips/details/DIP6#DIP6c2 \"smart-Component\").",
+      "\n\n",
+      "## Motivation\n\n",
+      "This proposal aims to layout one part of the generalized process for adding collateral types to the Maker Protocol. This generalized process will allow the community to get an idea of what the applying collateral is, an overview of the risks, and an understanding of the potential benefits to Maker. A consistent application form allows prospective collateral types to be easily compared by the community. The pitch materials enable the interested party to generate interest from the Maker community.",
+      "\n\n",
+      "Although this is only one component of the overall collateral onboarding process, this proposed standard would decrease confusion surrounding how to start the process of getting collateral added to the Maker Protocol and, ultimately, increase the onboarding speed at which new collateral types can be onboarded.",
+      "\n\n",
+      "## Specification / Proposal Details\n\n",
+      "### DIP6c1: Process Overview\n\n",
+      "**Collateral Onboarding Form / Form Template**",
+      "1.  Fill out the application/questions in as much detail as you're willing.\n\n    -   Once filled out, the application must be published on the official MakerDAO forum and should be posted within the `Collateral Onboarding Applications ([DIP6](dips/details/DIP6 \"smart-Dip\"))` subcategory within the `Collateral Onboarding` category.\n    -   This post should have the tag `collateral-app.`\n    -   Note that an 'interested party' refers to anybody willing to act as a stakeholder for this onboarding process.\n\n2.  After the submission on the forum, the community will likely have follow up questions. While not a requirement, answering questions about your project may help generate support or excitement for the proposed collateral type. Additionally, the interested party may organize an optional call to pitch their proposal as well as open up further discussion to the community.\n\n3. Once the [DIP6](dips/details/DIP6 \"smart-Dip\") application has been published for at least two full weeks, it is eligible for a Community Greenlight poll defined in [DIP9](https://github.com/makerdao/dips/blob/master/DIP9/dip9.md).\n\n",
+      "### Community Introduction Process Overview Diagram\n\n",
+      "<img width=\"635\" alt=\"dip6-a\" src=\"https://user-images.githubusercontent.com/32653033/83067804-49cb6a00-a035-11ea-9841-73b66df52fef.png\">\n\n",
+      "---\n",
+      "### DIP6c2: Application Template\n\n",
+      "DIP6c2 defines a template for collateral applications, as described in [DIP6c1](dips/details/DIP6#DIP6c1 \"smart-Component\"). This template is located at **[DIP6c2-Collateral-Application-Template.md](DIP6c2-Collateral-Application-Template.md)**. This template is considered ratified once this DIP moves to Accepted status.",
+      "\n\n",
+      "Responses to these questions serve as an introduction to the community; this minimum set of information helps intrigued community members research the project independently. Other pitch materials of all sorts are encouraged if the applicant believes it will help them garner support and excitement for the collateral.",
+      "\n\n",
+      "---\n",
+      "### DIP6c3: Application Template Amendment Process\n\n",
+      "DIP6c3 is a Process DIP component that allows the modification of the template defined in [DIP6c2](dips/details/DIP6#DIP6c2 \"smart-Component\") using a subproposal. [DIP6c3](dips/details/DIP6#DIP6c3 \"smart-Component\") subproposals have the following parameters:",
+      "- **Default Feedback Period**: 1 month\n- **Frozen Period**: 1 week\n\n",
+      "DIP6c3 subproposals must use the template located at  **[DIP6c3-Subproposal-Template.md](DIP6c3-Subproposal-Template.md)**. This template is considered ratified once this DIP moves to Accepted status.",
+      "\n\n",
+      "---\n"
+    ],
+    "sections": [
+      { "heading": "DIP6: Collateral Onboarding Application", "depth": 1 },
+      { "heading": "Preamble", "depth": 2 },
+      { "heading": "References", "depth": 2 },
+      { "heading": "Sentence Summary", "depth": 2 },
+      { "heading": "Paragraph Summary", "depth": 2 },
+      { "heading": "Component Summary", "depth": 2 },
+      { "heading": "Motivation", "depth": 2 },
+      { "heading": "Specification / Proposal Details", "depth": 2 },
+      {
+        "heading": "DIP6c1: Process Overview",
+        "depth": 3,
+        "dipComponent": "DIP6c1"
+      },
+      {
+        "heading": "Community Introduction Process Overview Diagram",
+        "depth": 3
+      },
+      {
+        "heading": "DIP6c2: Application Template",
+        "depth": 3,
+        "dipComponent": "DIP6c2"
+      },
+      {
+        "heading": "DIP6c3: Application Template Amendment Process",
+        "depth": 3,
+        "dipComponent": "DIP6c3"
+      }
+    ],
+    "dependencies": ["n/a"],
+    "tags": [
+      "process",
+      "collateral-onboarding",
+      "dip-set",
+      "collateral-onboarding-dipset"
+    ],
+    "contributors": [
+      "@LongForWisdom",
+      "Leo Jsaraceno (Mitote)",
+      "Helge Andreas Qvam (@planet_X)"
+    ],
+    "author": ["Charles St.Louis (@CPSTL)", "Rune Christensen (@Rune23)"],
+    "proposal": "",
+    "extra": [
+      "This DIP has been amended. See [DIP4c2-SP1](https://dips.makerdao.com/dips/details/DIP4c2SP1). The original version can be found [here](https://github.com/makerdao/dips/blob/977f0fbf2943252659145156ddae7e657246ecac/DIP6/dip6.md)."
+    ],
+    "dipFather": true,
+    "subproposal": -1,
+    "dip": 6,
+    "language": "en",
+    "_id": "63176fb6a7aebc1c501540c1",
+    "hash": "42de5a90946c6d1196ab4103c52f788c88501435",
+    "filename": "DIP6/dip6.md",
+    "dipName": "DIP6",
+    "sentenceSummary": "DIP6 defines a standardized application form used to kick off the process of onboarding a new collateral asset to the Maker Protocol.",
+    "paragraphSummary": "The purpose of this proposal is to standardize the collateral onboarding application template that community members and third-party projects can use to begin the process of getting their collateral onboarded to the Maker Protocol.",
+    "dateProposed": "2020-04-06",
+    "dateRatified": "2020-05-02",
+    "replaces": "n/a",
+    "status": "Accepted",
+    "title": "Collateral Onboarding Application",
+    "types": "Process",
+    "subproposalsCount": 2,
+    "votingPortalLink": "",
+    "forumLink": "https://forum.makerdao.com/t/dip6-collateral-onboarding-form-forum-template/1908",
+    "dipCodeNumber": "DIP0006"
+  },
+  "pullRequests": { "open": 0, "close": 0, "items": [] },
+  "subproposals": [
+    {
+      "_id": "63176fb6a7aebc1c501540bf",
+      "dipName": "DIP6c3SP1",
+      "title": "RWA Only Supplement to Collateral Onboarding Application"
+    },
+    {
+      "_id": "63176fb6a7aebc1c501540c0",
+      "dipName": "DIP6c3SP2",
+      "title": "Subproposal for changing the collateral application form"
+    }
+  ],
+  "languagesAvailables": [
+    { "language": "en", "_id": "63176fb6a7aebc1c501540c1", "dipName": "DIP6" }
+  ],
+  "metaVars": [
+    {
+      "_id": "6328d7d9553d621c6f02bb64",
+      "language": "es",
+      "translations": "strings:\n  learn: Aprende\n  portaldoc: El Portal de DIP\n  primer: Intro para Autores\n  dip0: El Framework de DIP\n  dip51: Ciclo de Gobernanza Mensual\n  views: Vistas\n  status: Estado\n  rfc: RFC\n  fs: Formal Submission\n  accepted: Aceptada\n  obsolete: Obsoleta\n  rejected: Rechazada\n  withdrawn: Retirada\n  coreunits: Core Units\n  allcus: Todas (DIP38c2)\n  activebudgets: Presupuestos Activos\n  spsinforce: Subpropuestas en Vigor\n  archive: Archivo\n  living: Propuestas Registrales\n  technical: Técnicas\n  implemented: Implementadas\n  pending: Pendientes de Implementación\n  process: Procesos\n  contact: Ponte en Contacto\n  forum: Foro\n  chat: Chat\nreserved:\n  Preamble: Preámbulo\n  'DIP#': 'DIP#'\n  Title: Título\n  Author(s): Autor(es)\n  Contributors: Colaboradores\n  Type: Tipo\n  Status: Estado\n  Date Proposed: Fecha de Proposición\n  Date Ratified: Fecha de Ratificación\n  Last Amended: Última Modificación\n  Dependencies: Dependencias\n  Replaces: Reemplaza\n  References: Referencias\n  Sentence Summary: Resumen Corto\n  Paragraph Summary: Resumen Largo\n  Component Summary: Índice de Componentes\nnews:\n  description1: \"Descripción uno.\"\n  description2: \"Descripción dos\"\n  description3: \"Descripción tres\"\n  link1: \"https://dips.makerdao.com/dips/details/DIP0\"\n  linkforum1: \"https://forum.makerdao.com/t/dip0-the-maker-improvement-proposal-framework/1902\"\n  linkmd1: \"https://github.com/DSpotDevelopers/dips/blob/master/DIP0/General-DIP-Template.md\"\n  title1: \"Hubo algunos cambios.\"\n  title2: \"Título dos\"\n  title3: \"Título tres\"\n",
+      "__v": 0
+    },
+    {
+      "_id": "6328d7d9553d621c6f02bb65",
+      "language": "en",
+      "translations": "strings:\n  learn: Learn\n  portaldoc: The DIPs Portal\n  primer: Primer for Authors\n  dip0: The DIPs Framework\n  dip51: Monthly Governance Cycle\n  views: Views\n  status: Status\n  rfc: RFC\n  fs: Formal Submission\n  accepted: Accepted\n  obsolete: Obsolete\n  rejected: Rejected\n  withdrawn: Withdrawn\n  coreunits: Core Units\n  allcus: All (DIP38c2)\n  activebudgets: Active Budgets\n  spsinforce: Subproposals in Force\n  archive: Archive\n  living: Living DIPs\n  technical: Technical\n  implemented: Implemented\n  pending: Pending Implementation\n  process: Processes\n  contact: Get in Touch\n  forum: Forum\n  chat: Chat\nreserved:\n  Preamble: Preamble\n  'DIP#': 'DIP#'\n  Title: Title\n  Author(s): Author(s)\n  Contributors: Contributors\n  Type: Type\n  Status: Status\n  Date Proposed: Date Proposed\n  Date Ratified: Date Ratified\n  Last Amended: Last Amended\n  Dependencies: Dependencies\n  Replaces: Replaces\n  References: References\n  Sentence Summary: Sentence Summary\n  Paragraph Summary: Paragraph Summary\n  Component Summary: Component Summary\nnews: \n  title1: There were some chanages. \n  description1: Description one.\n  link1: https://dips.makerdao.com/dips/details/DIP0\n  linkforum1: https://forum.makerdao.com/t/dip0-the-maker-improvement-proposal-framework/1902\n  linkmd1: https://github.com/DSpotDevelopers/dips/blob/master/DIP0/General-DIP-Template.md\n  title2: Title two\n  description2: Description two\n  title3: Title three\n  description3: Description three\n",
+      "__v": 0
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+strings:
+  learn: Aprende
+  portaldoc: El Portal de DIP
+  primer: Intro para Autores
+  dip0: El Framework de DIP
+  dip51: Ciclo de Gobernanza Mensual
+  views: Vistas
+  status: Estado
+  rfc: RFC
+  fs: Formal Submission
+  accepted: Aceptada
+  obsolete: Obsoleta
+  rejected: Rechazada
+  withdrawn: Retirada
+  coreunits: Core Units
+  allcus: Todas (DIP38c2)
+  activebudgets: Presupuestos Activos
+  spsinforce: Subpropuestas en Vigor
+  archive: Archivo
+  living: Propuestas Registrales
+  technical: Técnicas
+  implemented: Implementadas
+  pending: Pendientes de Implementación
+  process: Procesos
+  contact: Ponte en Contacto
+  forum: Foro
+  chat: Chat
+reserved:
+  Preamble: Preámbulo
+  'DIP#': 'DIP#'
+  Title: Título
+  Author(s): Autor(es)
+  Contributors: Colaboradores
+  Type: Tipo
+  Status: Estado
+  Date Proposed: Fecha de Proposición
+  Date Ratified: Fecha de Ratificación
+  Last Amended: Última Modificación
+  Dependencies: Dependencias
+  Replaces: Reemplaza
+  References: Referencias
+  Sentence Summary: Resumen Corto
+  Paragraph Summary: Resumen Largo
+  Component Summary: Índice de Componentes
+news:
+  description1: "Descripción uno."
+  description2: "Descripción dos"
+  description3: "Descripción tres"
+  link1: "https://dips.makerdao.com/dips/details/DIP0"
+  linkforum1: "https://forum.makerdao.com/t/dip0-the-maker-improvement-proposal-framework/1902"
+  linkmd1: "https://github.com/DSpotDevelopers/dips/blob/master/DIP0/General-DIP-Template.md"
+  title1: "Hubo algunos cambios."
+  title2: "Título dos"
+  title3: "Título tres"

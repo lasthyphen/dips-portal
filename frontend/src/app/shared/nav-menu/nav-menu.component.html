@@ -1,0 +1,89 @@
+<div class="NavMenu" (touchstart)="closeMenuOnScroll()">
+  <app-menu
+    *ngFor="let item of menu; let i = index"
+    [menu]="item"
+    [levelMenu]="0"
+    (toggle)="onMenuToggle($event)"
+    [isOpen]="openedIndexChild === i"
+    (opened)="onOpened(i)"
+    [attr.data-cy]="'menu-'+item.id"
+  >
+    <span class="underline-menu lineal">{{ item.name }}</span>
+  </app-menu>
+  <app-menu
+    [menu]="feedBackLinkMenu"
+    [levelMenu]="0"
+    (toggle)="onMenuToggle($event)"
+    [isOpen]="openedIndexChild === menu.length"
+    (opened)="onOpened(menu.length)"
+    [showArrow]="false"
+  >
+    <span>
+      <div class="imageLinkMenuWrapper" matRipple [matRippleCentered]="true">
+        <img
+          *ngIf="feedBackLinkMenu && feedBackLinkMenu.img"
+          [src]="feedBackLinkMenu.img"
+          style="margin-left: 2px; width: 30px; height: 21px"
+        />
+      </div>
+    </span>
+  </app-menu>
+  <app-menu
+    [menu]="menuLang"
+    [levelMenu]="0"
+    (toggle)="onMenuToggle($event)"
+    [isOpen]="openedIndexChild === menu.length"
+    (opened)="onOpened(menu.length)"
+    [showArrow]="false"
+    [isLanguageMenu]="true"
+  >
+    <span style="display: flex">
+      <img
+        *ngIf="menuLang"
+        class="internalizationIcon"
+        [ngClass]="
+          darkModeService.getDarkMode() ? 'internalizationIconDark' : ''
+        "
+        src="./assets/images/internalization-icon.svg"
+        style="margin-right: 23px; margin-left: 2px; width: 26px; height: 26px"
+      />
+    </span>
+  </app-menu>
+  <div
+    class="darkModeToggler"
+    (click)="toggleDarkMode()"
+    [matTooltip]="
+      darkModeService.getDarkMode() ? 'Turn on the light' : 'Turn off the light'
+    "
+    [matTooltipClass]="
+      darkModeService.getDarkMode()
+        ? 'tooltip-darkmode-toggler'
+        : 'tooltip-white-mode-toggler'
+    "
+  >
+    <img
+      *ngIf="!darkModeService.getDarkMode()"
+      alt="lighMode"
+      class="defaultIcon"
+      src="./assets/images/toggler-to-dark-mode.svg"
+    />
+    <img
+      *ngIf="!darkModeService.getDarkMode()"
+      alt="lighMode"
+      class="hoverIcon"
+      src="./assets/images/toggler-to-dark-mode-hover.svg"
+    />
+    <img
+      *ngIf="darkModeService.getDarkMode()"
+      alt="darkMode"
+      class="hoverIcon"
+      src="./assets/images/toggler-to-light-mode-hover.svg"
+    />
+    <img
+      *ngIf="darkModeService.getDarkMode()"
+      alt="darkMode"
+      class="defaultIcon"
+      src="./assets/images/toggler-to-light-mode.svg"
+    />
+  </div>
+</div>

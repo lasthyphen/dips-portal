@@ -1,0 +1,164 @@
+<div class="container" [ngClass]="{ 'search-mobile-container-dark': darkMode }">
+  <img
+    class="main"
+    *ngIf="!showInput"
+    (click)="onOpenCloseInput()"
+    src="../../../../../assets/images/magnifier_frame.svg"
+  />
+  <div class="init">
+    <img
+      *ngIf="showInput"
+      src="../../../../../assets/images/magnifier_dark.svg"
+    />
+  </div>
+  <!-- <input
+    *ngIf="showInput"
+    type="text"
+    #search
+    placeholder="Search on the list"
+    (keyup)="onKeySearch($event)"
+    value="{{ text }}"
+    [ngStyle]="{ borderRadius: showListSearch ? '5px 5px 0 0' : '5px' }"
+    [ngClass]="{ error: error }"
+    [value]="value"
+    [appAutocomplete]="autocomplete"
+    [formControl]="control"
+  /> -->
+  <div
+    class="textBoxWrapper"
+    [ngStyle]="{
+      borderRadius: showListSearch ? '5px 5px 0 0' : '5px'
+    }"
+    [ngClass]="{
+      error: error,
+      expandInput: showInput,
+      shrinkInput: !showInput
+    }"
+    #textBoxWrapper
+  >
+    <div
+      class="contentEditableInput"
+      type="text"
+      #search
+      (keyup)="onKeySearch($event)"
+      (paste)="onPaste($event)"
+      [appAutocomplete]="autocomplete"
+      [formControl]="control"
+      contenteditable
+      placeholder=""
+      [appFormattingMd]="format"
+      [activate]="isQueryMode"
+    ></div>
+  </div>
+  <div
+    class="close-container"
+    *ngIf="showInput && showClose && !!valueWithoutLineBreaks && (!isQueryMode || error)"
+    (click)="clear()"
+  >
+    <img src="../../../../../assets/images/close.svg" class="imageClose" />
+  </div>
+</div>
+<ng-template #dipsSugestions>
+  <div
+    class="ListSearch"
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="1"
+    [scrollWindow]="false"
+    (scrolled)="onLoadMoreDipSugestions()"
+  >
+    <div
+      *ngFor="let item of listSearchItems"
+      class="list-search-item"
+      (click)="onClickSearchItem(item)"
+    >
+      <p>{{ item.content }}</p>
+      <img
+        class="arrow-go-to"
+        src="../../../../../assets/images/arrow_go_to.svg"
+      />
+    </div>
+    <div
+      *ngIf="loadingDipsSuggestions"
+      class="list-search-item"
+      style="justify-content: center;"
+    >
+      <mat-spinner [diameter]="20"></mat-spinner>
+    </div>
+  </div>
+</ng-template>
+<!-- <div *ngIf="!isQueryMode" class="close-container">
+  <img (click)="clear()" src="{{ imageClose }}" class="imageClose" />
+</div> -->
+<div
+  class="help-popup-wrapper"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  (click)="openHelpPopup()"
+  [ngStyle]="{ visibility: !(showClose && !!valueWithoutLineBreaks && error) && isQueryMode && showInput ? 'visible' : 'hidden' }"
+>
+  <a class="help-container" type="button">
+    <img
+      [src]="isOpenHelpPopup ? helpIconBlue : helpIconDark"
+      class="imageHelp"
+    />
+  </a>
+</div>
+<div *ngIf="error && showInput" class="invalid">{{ errorMessage }}</div>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpenHelpPopup"
+  [cdkConnectedOverlayPanelClass]="'panelClass'"
+  [cdkConnectedOverlayPositions]="positionHelpPopup"
+  (overlayOutsideClick)="onClickOutside($event)"
+>
+  <div class="help-popup" @enterLeaveSmooth>
+    <div class="head-help-popup">
+      <span>You can use:</span>
+    </div>
+    <div class="info-help-popup">
+      <span class="dark"><b>$</b></span
+      ><span class="grey"><b>: </b><i>to start query sentence</i></span>
+    </div>
+    <div class="info-help-popup">
+      <span class="dark"><b>OR</b></span
+      ><span class="grey"><b>: OR</b>(A, B, ...)</span>
+    </div>
+    <div class="info-help-popup">
+      <span class="dark"><b>AND</b></span
+      ><span class="grey"><b>: AND</b>(A, B, ...)</span>
+    </div>
+    <div class="info-help-popup">
+      <span class="dark"><b>NOT</b></span
+      ><span class="grey"><b>: NOT</b>(A)</span>
+    </div>
+    <div class="info-help-popup">
+      <span class="dark"><b>#</b></span
+      ><span class="grey">: #tag</span>
+    </div>
+    <div class="info-help-popup">
+      <span class="dark"><b>@</b></span
+      ><span class="grey">: @STATUS</span>
+    </div>
+    <div class="hr"></div>
+  </div>
+</ng-template>
+
+<app-autocomplete
+  #autocomplete="appAutocomplete"
+  [labels]="['@', '#']"
+  (enter)="selectedAutocompleteOptionByEnter = true"
+  (activatedLabel)="isQueryMode ? searchAutocompleteOptions($event) : null"
+  (closedOptions)="onClosedOptionsAutocomplete()"
+>
+  <ng-template appAutocompleteContent>
+    <app-option-autocomplete
+      *ngFor="let option of options"
+      [value]="option.label"
+      [ngStyle]="getAutocompleteOptionStyle(option.label)"
+    >
+      {{ option.label }}
+    </app-option-autocomplete>
+  </ng-template>
+</app-autocomplete>

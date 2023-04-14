@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* vietnamese */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+h1,h2 {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+html,
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased !important;
+
+}
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #f5f6fa;
+  font-size: .875em;
+  line-height: 1.5em;
+  -webkit-font-smoothing: antialiased !important;
+}
+// body { margin: 0; font-family: Roboto; background: #F5F6FA;}
+
+.dark-body {
+  color: #f5f6fa !important;
+  background: #1A202B !important;
+
+ 
+}
+
+li {
+  line-height: 1.5em !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-size: .875em !important;
+  color: #31394d;
+  -webkit-font-smoothing: antialiased !important;
+}
+p {
+  font-size: .875em !important;
+  line-height: 1.5em !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.mat-tooltip-green {
+  color: white;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  background-color: rgba(26, 171, 155, 0.9) !important;
+}
+
+.mat-tooltip-blue {
+  color: white;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  background-color: rgba(47, 128, 237, 0.8) !important;
+}
+
+.DipContentOverlayPanelClass {
+  overflow-y: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.IconsOverlayPanelClass {
+  margin-top: 10px;
+}
+
+.DipContentOverlayBackdropClass {
+  background-color: rgba(51, 51, 51, 0.1);
+}
+
+.panelClass {
+  transition: all 0.4s ease-in-out;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .panelClass{
+    transform: translateY(-5px);
+  }
+}

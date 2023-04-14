@@ -1,0 +1,24 @@
+<div
+  class="container"
+  [ngClass]="{ 'container-dark': darkMode }"
+>
+  <div class="content" #sectionLinks>
+    <p class="header">{{ titleSidebar | translate }}</p>
+    <div *ngFor="let section of sourceData|dipSections:allowedDepths; trackBy:trackByIdx">
+      <div>
+        <p>
+          <a
+            [id]="prefixIdLinkSection + section.fragment"
+            [class]="section.className"
+            [class.active]="section.fragment === (currentFragment$|async)"
+            routerLink="."
+            [fragment]="section.fragment"
+            [replaceUrl]="true"
+            (click)="scrollFragmentIntoView(section.fragment)">
+            {{ section.heading }}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

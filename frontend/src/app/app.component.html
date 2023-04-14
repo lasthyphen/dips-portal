@@ -1,0 +1,16 @@
+<div
+  #container
+  class="container"
+  [ngClass]="{ 'container-dark': darkModeService.getDarkMode() }"
+>
+  <app-header></app-header>
+  <div class="mainContentHolder">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer
+    appObserveVisibility
+    (visible)="onFooterVisible($event)"
+    [ngStyle]="{'position':'relative', 'z-index':1000}"
+  ></app-footer>
+</div>
+<app-md-feedback id="feedback"></app-md-feedback>

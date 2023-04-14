@@ -1,0 +1,118 @@
+<div *ngIf="!dip && loadingUrl" class="maker-loading-shade">
+  <mat-spinner></mat-spinner>
+</div>
+<div
+  *ngIf="dip || mdUrl"
+  [ngClass]="{
+    container: true,
+    'container-dark': darkModeService.getDarkMode(),
+    hidden: loadingUrl
+  }"
+>
+  <app-dips-pagination
+    *ngIf="dip"
+    [dipName]="dip?.dipName"
+    [dipPosition]="dipPosition"
+    [total]="total"
+    [parent]="dip?.proposal"
+    [sections]="sections"
+    [dip]="dip?.dip"
+    (send)="dipsPagination($event)"
+    [darkMode]="darkModeService.getDarkMode()"
+  ></app-dips-pagination>
+
+  <div *ngIf="dip" class="tabs-container">
+    <div
+      *ngFor="let tab of TABS_OPTIONS"
+      [ngClass]="{
+        'tabs-item': true,
+        'tab-active': selectedTab === tab,
+        hide: tab === 'References' && !references?.length
+      }"
+      (click)="selectedTab = selectedTab === tab ? null : tab"
+    >
+      {{ tab | translate }}
+    </div>
+  </div>
+
+  <div
+    [ngClass]="{ row: true, 'row-tree-column': dip, 'row-two-column': mdUrl }"
+  >
+    <div class="column">
+      <div class="sidebar-wrapper">
+        <app-proposal-components
+          *ngIf="sections && dip"
+          class="no-mobile"
+          [sourceData]="sections"
+          [darkMode]="darkModeService.getDarkMode()"
+        ></app-proposal-components>
+        <app-proposal-components
+          *ngIf="sections && mdUrl"
+          class="no-mobile"
+          showlevelOne="true"
+          titleSidebar="Table of contents"
+          [sourceData]="sections"
+          [darkMode]="darkModeService.getDarkMode()"
+        ></app-proposal-components>
+      </div>
+    </div>
+    <app-detail-content
+      [sourceData]="sections"
+      [mdUrl]="mdUrl"
+      [dip]="dip"
+      [dipName]="dipName"
+      [subproposals]="subproposals"
+      (headingListUpdate)="headingListUpdate($event)"
+      [darkMode]="darkModeService.getDarkMode()"
+      #detail
+    ></app-detail-content>
+    <div
+      *ngIf="dip"
+      class="column"
+      [ngClass]="{ 'details-column': darkModeService.getDarkMode() }"
+    >
+      <div class="sidebar-wrapper">
+        <app-language-document
+          *ngIf="languagesAvailables && dip"
+          [ngClass]="{ 'hide-on-mobile': selectedTab !== 'Languages' }"
+          (updateDocumentLanguage)="updateDocumentLanguage($event)"
+          [documentLanguage]="documentLanguage"
+          [languagesAvailables]="languagesAvailables"
+          [darkMode]="darkModeService.getDarkMode()"
+        ></app-language-document>
+
+        <app-dip-details
+          [ngClass]="{ 'hide-on-mobile': selectedTab !== 'Details' }"
+          id="details-component"
+          [status]="dip?.status"
+          [dateProposed]="dip?.dateProposed"
+          [dateRatified]="dip?.dateRatified"
+          [ratifiedDataLink]="dip?.ratifiedData"
+          [dipName]="dip?.dipName"
+          [title]="dip?.title"
+          [authors]="dip?.author"
+          [contributors]="dip?.contributors"
+          [type]="dip?.types"
+          [lastOpened]=""
+          [dependencies]="dip?.dependencies"
+          [replaces]="dip?.replaces"
+          [pollAddress]="dip?.pollAddress"
+          [tags]="dip?.tags"
+          [darkMode]="darkModeService.getDarkMode()"
+        ></app-dip-details>
+        <app-references
+          *ngIf="references && references.length > 0"
+          [ngClass]="{ 'hide-on-mobile': selectedTab !== 'References' }"
+          [references]="dip?.references"
+          [dipName]="dip?.dipName"
+        ></app-references>
+        <app-pull-request-history
+          [ngClass]="{ 'hide-on-mobile': selectedTab !== 'Recent Changes' }"
+          id="pull-request-history"
+          [pullrequest]="pullrequest"
+        ></app-pull-request-history>
+      </div>
+    </div>
+  </div>
+</div>
+<app-button-top></app-button-top>

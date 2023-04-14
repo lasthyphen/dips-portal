@@ -1,0 +1,566 @@
+<div class="maker-container" [ngClass]="{'maker-container-dark':darkModeService.getDarkMode()}">
+  <table mat-table [dataSource]="dataSourceTable" multiTemplateDataRows class="no-mobile tableDipSet" *ngIf="dataSourceDipsetRows.length > 0 && !error">
+    <ng-container
+      matColumnDef="{{ column }}"
+      *ngFor="let column of columnsToDisplay"
+    >
+      <span *ngIf="column != 'links' && column !='summary'">
+        <span *ngIf="column != 'pos'">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            style="cursor: pointer;"
+            (click)="onSendOrder(column)"
+          >
+            <span class="headerContent"
+              >{{ column | translate
+              }}<app-asc-des
+                [direction]="getOrderDirection(column)"
+              ></app-asc-des
+            ></span>
+          </th>
+        </span>
+        <span *ngIf="column == 'pos'">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            style="cursor: pointer;"
+            (click)="onSendOrder(column)"
+          >
+            <span class="headerContent"
+              >#<app-asc-des
+                [direction]="getOrderDirection(column)"
+              ></app-asc-des
+            ></span>
+          </th>
+        </span>
+      </span>
+      <span *ngIf="column == 'links' || column == 'summary'">
+        <th mat-header-cell *matHeaderCellDef style="cursor: default;">
+          {{ column | translate}}
+        </th>
+      </span>
+      <!-- all these td will be collapsed, the purpose of this td is to align the subtables with the header -->
+      <span *ngIf="column == 'title'">
+        <td
+          class="tooltip"
+          mat-cell
+          *matCellDef="let element"
+          [ngClass]="{ 'subproposal-title': element.proposal }"
+          style="cursor: pointer;"
+        >
+          <a class="dipTitleList" style="position: relative;">
+            <div class="cover"></div>
+            <br />{{ element[column] }}</a
+          >
+        </td>
+      </span>
+      <span *ngIf="column == 'status'">
+        <td mat-cell *matCellDef="let element">
+          <div class="space-status"></div>
+          <app-status
+            [type]="'ACCEPTED'"
+            [value]="'accepted'"
+            style="cursor: pointer;"
+          ></app-status>
+        </td>
+      </span>
+      <span *ngIf="column == 'links'">
+        <td mat-cell *matCellDef="let element">
+          <div class="space-status"></div>
+          <app-social
+            votingPortalLink="{{ element?.votingPortalLink }}"
+            forumLink="{{ element?.forumLink }}"
+            [githubLink]="element.filename"
+          ></app-social>
+        </td>
+      </span>
+      <span *ngIf="column == 'pos'">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          style="cursor: pointer; position: relative;"
+        >
+          <br />
+
+          {{ element.proposal ? "" : element.dip }}
+          <div>
+            <button
+              mat-icon-button
+              *ngIf="!element.proposal && element.dipFather"
+              class="arrow-container-pos"
+              style="right: 0;"
+            >
+              <div class="arrow-wrapper expanded">
+                <img class="arrow" [src]="'./assets/images/down_hover.svg'" />
+              </div>
+            </button>
+          </div>
+        </td>
+      </span>
+      <span *ngIf="column == 'summary'">
+        <td
+          style="position: relative; cursor: pointer;"
+          mat-cell
+          *matCellDef="let element"
+        >
+          <div style="cursor: pointer;">
+            <a class="summary" *ngIf="!element.expandedSummary"
+              ><br />
+              <markdown
+                class="variable-binding variable-binding-summary"
+                [data]="element.sentenceSummary"
+              ></markdown
+            ></a>
+          </div>
+          <button mat-icon-button class="arrow-container-pos">
+            <div class="arrow-wrapper expanded">
+              <img class="arrow" [src]="'./assets/images/down_hover.svg'" />
+            </div>
+          </button>
+        </td>
+      </span>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: columnsToDisplay"
+      class="maker-element-row"
+    ></tr>
+  </table>
+
+  <div *ngIf="loading && !error" class="maker-loading-shade">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table
+    *ngIf= "!loading && !error && dataSourceDipsetRows.length > 0"
+    mat-table
+    [dataSource]="dataSourceDipsetRows"
+    multiTemplateDataRows
+    class="dipset-table no-mobile"
+  >
+    <ng-container
+      matColumnDef="{{ column }}"
+      *ngFor="let column of columnsToDisplayDipset"
+    >
+      <span *ngIf="column == 'dipset'" class="dipsetColumnWrapper">
+        <td
+          class="dipsetColumn"
+          mat-cell
+          *matCellDef="let element"
+          style="cursor: pointer; position: relative;"
+          [ngStyle]="{
+            color: element.expanded ? '#B8C5D3' : ''
+          }"
+        >
+          {{ element[column] | tagDipset | titlecase }}
+          <div class="centerVertically">
+            <button
+              class="arrow-container"
+              [disabled]="element.loadingSubproposals"
+              (mouseover)="onMouseOverLeaveDipsetArrow(element.dipset, true)"
+              (mouseleave)="onMouseOverLeaveDipsetArrow(element.dipset, false)"
+              style="right: 0; position: relative;"
+              [ngClass]="{
+                'dark-expand-arrow': !element.expanded,
+                'shine-expand-arrow': element.expanded
+              }"
+            >
+              <div
+                class="arrow-wrapper expanded"
+                [ngClass]="{
+                  rotate: element.expanded
+                }"
+              >
+                <svg
+                  width="10"
+                  height="7.14"
+                  viewBox="0 0 7 5"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="arrow"
+                >
+                  <path
+                    *ngIf="!element.expanded"
+                    d="M3.91278 4.79436C3.70724 5.06854 3.29276 5.06854 3.08722 4.79436L0.102225 0.812461C-0.149574 0.476568 0.0925517 -6.03868e-07 0.515005 -5.66936e-07L6.485 -4.50231e-08C6.90745 -8.09104e-09 7.14957 0.476568 6.89778 0.812461L3.91278 4.79436Z"
+                    fill="#748AA1"
+                  />
+                  <path
+                    *ngIf="element.expanded"
+                    d="M3.91278 4.79436C3.70724 5.06854 3.29276 5.06854 3.08722 4.79436L0.102225 0.812461C-0.149574 0.476568 0.0925517 -6.03868e-07 0.515005 -5.66936e-07L6.485 -4.50231e-08C6.90745 -8.09104e-09 7.14957 0.476568 6.89778 0.812461L3.91278 4.79436Z"
+                    fill="#B8C5D3"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
+        </td>
+      </span>
+    </ng-container>
+
+    <!-- Expanded Content Column -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="columnsToDisplayDipset.length"
+      >
+        <div
+          class="maker-element-subsetchildren-detail"
+          [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'"
+        >
+          <ng-container>
+            <app-sublist [dataSource]="dipSets[element.dipset]"></app-sublist>
+          </ng-container>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr
+      mat-row
+      *matRowDef="let element; columns: columnsToDisplayDipset"
+      class="maker-element-dipset-row"
+      [class.maker-expanded-row]="element.expanded"
+      (click)="onExpandDipset(element)"
+      [attr.data-cy]="'dipset-row-'+element.dipset"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="maker-detail-dipset-row"
+    ></tr>
+  </table>
+
+  <ng-container *ngIf="!loading">
+    <div *ngFor="let itemDipset of dataSourceDipsetRows" class="mobile">
+      <button
+        mat-button
+        class="mobile-container subproposal-card-dipsetMode"
+        (click)="onExpandDipset(itemDipset)"
+      >
+        <div style="width: calc(100% - 35px);">
+          <span class="title" style="font-size: 20px;">
+            {{ itemDipset.dipset | tagDipset | titlecase }}</span
+          >
+        </div>
+        <div class="subproposalsButtonWrapper centerVertically">
+          <button
+            class="arrow-container"
+            [disabled]="false"
+            style="right: 0; top: 24px; transform: translateY(-50%);"
+          >
+            <div
+              class="arrow-wrapper expanded"
+              [ngClass]="{
+                rotate: itemDipset.expanded
+              }"
+            >
+              <img
+                class="arrow"
+                [src]="
+                  isArrowDipsetDownOnMouseOver
+                    ? '../../../../../assets/images/down_hover.svg'
+                    : '../../../../../assets/images/down.svg'
+                "
+              />
+            </div>
+          </button>
+        </div>
+      </button>
+
+      <div [@dipsetExpand]="itemDipset.expanded ? 'expanded' : 'collapsed'">
+        <div
+          *ngFor="let itemDipsetChildren of dipSets[itemDipset.dipset]"
+          style="width: 100%;"
+        >
+          <div
+            class="mobile-container"
+            [ngClass]="{
+              'proposal-card': !itemDipsetChildren.proposal,
+              'subproposal-card': itemDipsetChildren.proposal
+            }"
+          >
+            <div style="width: calc(100% - 35px);">
+              {{
+                itemDipsetChildren.proposal ? "" : "# " + itemDipsetChildren.dip
+              }}
+              <img
+                *ngIf="!itemDipsetChildren.proposal"
+                src="../../../../../assets/images/circle.svg"
+              />
+              <span class="title">
+                <a routerLink="/dips/details/{{ itemDipsetChildren.dipName }}">
+                  {{
+                    itemDipsetChildren.title &&
+                    itemDipsetChildren.title.includes("-SP")
+                      ? "SP" + itemDipsetChildren.title.split("-SP")[1]
+                      : itemDipsetChildren.title
+                  }}</a
+                ></span
+              >
+            </div>
+            <div class="status">
+              <app-status
+                [type]="getStatusType(itemDipsetChildren.status)"
+                [value]="getStatusValue(itemDipsetChildren.status)"
+              ></app-status>
+            </div>
+            <div class="content">
+              <a
+                *ngIf="selected != itemDipsetChildren._id"
+                routerLink="/dips/details/{{ itemDipsetChildren.dipName }}"
+              >
+                <markdown
+                  class="variable-binding-content"
+                  [data]="itemDipsetChildren.sentenceSummary"
+                ></markdown>
+              </a>
+              <a
+                *ngIf="selected == itemDipsetChildren._id"
+                routerLink="/dips/details/{{ itemDipsetChildren.dipName }}"
+              >
+                <markdown
+                  class="variable-binding-content"
+                  [data]="itemDipsetChildren.paragraphSummary"
+                ></markdown>
+              </a>
+            </div>
+            <div style="clear: both;"></div>
+            <div
+              class="more"
+              (click)="updateSelected(itemDipsetChildren._id, $event)"
+            >
+              <img
+                class="arrow"
+                [ngClass]="{
+                  rotate: selected == itemDipsetChildren._id
+                }"
+                src="../../../../../assets/images/down.svg"
+              />
+              More
+            </div>
+            <app-social
+              votingPortalLink="{{itemDipsetChildren?.votingPortalLink}}"
+              forumLink="{{itemDipsetChildren?.forumLink}}"
+              [githubLink]="itemDipsetChildren.filename"
+              mobile="true"
+            ></app-social>
+            <div style="clear: both;"></div>
+            <div class="subproposalsButtonWrapper centerVertically">
+              <button
+                mat-icon-button
+                *ngIf="
+                  !itemDipsetChildren.proposal && itemDipsetChildren.dipFather
+                "
+                class="arrow-container"
+                [disabled]="itemDipsetChildren.loadingSubproposals"
+                (click)="
+                  expandedItems = { subproposals: true, summary: false };
+                  onGetSubproposals(
+                    itemDipsetChildren,
+                    itemDipset.dipset,
+                    $event
+                  )
+                "
+                (mouseover)="
+                  onMouseOverLeaveArrow(itemDipsetChildren._id, true)
+                "
+                (mouseleave)="
+                  onMouseOverLeaveArrow(itemDipsetChildren._id, false)
+                "
+                style="right: 0;"
+              >
+                <div
+                  class="arrow-wrapper expanded"
+                  [ngClass]="{
+                    rotate:
+                      !itemDipsetChildren.loadingSubproposals &&
+                      itemDipsetChildren.expanded &&
+                      expandedItems.subproposals
+                  }"
+                >
+                  <img
+                    class="arrow"
+                    [src]="
+                      isArrowDownOnMouseOver &&
+                      itemDipsetChildren._id == currentRowOver
+                        ? '../../../../../assets/images/down_hover.svg'
+                        : '../../../../../assets/images/down.svg'
+                    "
+                  />
+                </div>
+              </button>
+            </div>
+          </div>
+          <div
+            [@detailExpand]="
+              itemDipsetChildren.expanded ? 'expanded' : 'collapsed'
+            "
+          >
+            <ng-container *ngIf="itemDipsetChildren.expanded">
+              <div *ngFor="let itemSubset of itemDipsetChildren.subsetRows">
+                <div class="mobile-container subproposal-card-subset">
+                  <div style="width: calc(100% - 35px);">
+                    <span class="title">
+                      {{ itemSubset.subset + ": " + itemSubset.title }}</span
+                    >
+                  </div>
+                  <div class="subproposalsButtonWrapper centerVertically">
+                    <button
+                      mat-icon-button
+                      *ngIf="
+                        !itemDipsetChildren.proposal &&
+                        itemDipsetChildren.dipFather
+                      "
+                      class="arrow-container"
+                      [disabled]="itemDipsetChildren.loadingSubproposals"
+                      (click)="
+                        expandedItems = { subproposals: true, summary: false };
+                        itemSubset.expanded = !itemSubset.expanded
+                      "
+                      (mouseover)="
+                        onMouseOverLeaveArrow(itemDipsetChildren._id, true)
+                      "
+                      (mouseleave)="
+                        onMouseOverLeaveArrow(itemDipsetChildren._id, false)
+                      "
+                      style="right: 0;"
+                    >
+                      <div
+                        class="arrow-wrapper expanded"
+                        [ngClass]="{
+                          rotate:
+                            itemSubset.expanded && expandedItems.subproposals
+                        }"
+                      >
+                        <svg
+                          width="7"
+                          height="5"
+                          viewBox="0 0 7 5"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="arrow"
+                        >
+                          <path
+                            d="M3.91278 4.79436C3.70724 5.06854 3.29276 5.06854 3.08722 4.79436L0.102225 0.812461C-0.149574 0.476568 0.0925517 -6.03868e-07 0.515005 -5.66936e-07L6.485 -4.50231e-08C6.90745 -8.09104e-09 7.14957 0.476568 6.89778 0.812461L3.91278 4.79436Z"
+                            fill="#1aab9b"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  [@subproposalExpand]="
+                    itemSubset.expanded ? 'expanded' : 'collapsed'
+                  "
+                >
+                  <ng-container *ngIf="itemSubset.expanded">
+                    <div
+                      *ngFor="
+                        let itemSubsetChildren of itemDipsetChildren
+                          .subproposalsGroup[itemSubset.subset]
+                      "
+                      class="mobile-container subproposal-card"
+                    >
+                      <div style="width: calc(100% - 35px);">
+                        {{
+                          itemSubsetChildren.proposal
+                            ? ""
+                            : "# " + itemSubsetChildren.dip
+                        }}
+                        <img
+                          *ngIf="!itemSubsetChildren.proposal"
+                          src="../../../../../assets/images/circle.svg"
+                        />
+                        <span class="title">
+                          <a
+                            routerLink="/dips/details/{{
+                              itemSubsetChildren.dipName
+                            }}"
+                          >
+                            {{
+                              itemSubsetChildren.title &&
+                              itemSubsetChildren.title.includes("-SP")
+                                ? "SP" +
+                                  itemSubsetChildren.title.split("-SP")[1]
+                                : itemSubsetChildren.title
+                            }}</a
+                          ></span
+                        >
+                      </div>
+                      <div class="status">
+                        <app-status
+                          [type]="getStatusType(itemSubsetChildren.status)"
+                          [value]="getStatusValue(itemSubsetChildren.status)"
+                        ></app-status>
+                      </div>
+                      <div class="content">
+                        <a
+                          *ngIf="selected != itemSubsetChildren._id"
+                          routerLink="/dips/details/{{
+                            itemSubsetChildren.dipName
+                          }}"
+                        >
+                          <markdown
+                            class="variable-binding-content"
+                            [data]="itemSubsetChildren.sentenceSummary"
+                          ></markdown>
+                        </a>
+                        <a
+                          *ngIf="selected == itemSubsetChildren._id"
+                          routerLink="/dips/details/{{
+                            itemSubsetChildren.dipName
+                          }}"
+                        >
+                          <markdown
+                            class="variable-binding-content"
+                            [data]="itemSubsetChildren.paragraphSummary"
+                          ></markdown>
+                        </a>
+                      </div>
+                      <div style="clear: both;"></div>
+                      <button
+                        mat-button
+                        class="more"
+                        (click)="updateSelected(itemSubsetChildren._id, $event)"
+                      >
+                        <img
+                          class="arrow"
+                          [ngClass]="{
+                            rotate: selected == itemSubsetChildren._id
+                          }"
+                          src="../../../../../assets/images/down.svg"
+                        />
+                        More
+                      </button>
+                      <app-social
+                        votingPortalLink="{{itemSubsetChildren?.votingPortalLink}}"
+                        forumLink="{{itemSubsetChildren?.forumLink}}"
+                        [githubLink]="itemSubsetChildren.filename"
+                        mobile="true"
+                      ></app-social>
+                      <div style="clear: both;"></div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="no-result" *ngIf="!loading && (dataSourceDipsetRows?.length == 0 || error)">
+    <div>
+      <img *ngIf="!darkModeService.getDarkMode()" src="./assets/images/no_results.svg" />
+      <img *ngIf="darkModeService.getDarkMode()" src="./assets/images/no_results_dark.svg" />
+      <p>{{ "No results found" | translate }}</p>
+    </div>
+  </div>
+
+</div>

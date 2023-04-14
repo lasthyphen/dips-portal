@@ -1,0 +1,112 @@
+<div class="row up">
+  <div
+    class="iconWrapper"
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
+    (click)="open = !open"
+    [ngStyle]="{ 'z-index': open ? 1001 : 'auto' }"
+  >
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="16" height="3" rx="1.5" fill="#748AA1" />
+      <rect y="6.5" width="16" height="3" rx="1.5" fill="#748AA1" />
+      <rect y="13" width="7" height="3" rx="1.5" fill="#748AA1" />
+    </svg>
+  </div>
+
+  <!-- <div
+    class="iconWrapper"
+    cdkOverlayOrigin
+    #triggerMore="cdkOverlayOrigin"
+    (click)="openMore = !openMore"
+    [ngStyle]="{ 'z-index': openMore ? 1001 : 'auto' }"
+  >
+    <svg
+      width="4"
+      height="18"
+      viewBox="0 0 4 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="2" cy="2" r="2" fill="#748AA1" />
+      <circle cx="2" cy="9" r="2" fill="#748AA1" />
+      <circle cx="2" cy="16" r="2" fill="#748AA1" />
+    </svg>
+  </div> -->
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="open"
+  [cdkConnectedOverlayPositions]="positionPopup"
+  [cdkConnectedOverlayWidth]="284"
+  [cdkConnectedOverlayHeight]="540"
+  [cdkConnectedOverlayPanelClass]="'DipContentOverlayPanelClass'"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'DipContentOverlayBackdropClass'"
+  (overlayOutsideClick)="onClickOutside($event)"
+>
+  <div class="content" @enterLeaveSmooth>
+    <app-proposal-components
+      (click)="open = false"
+      [sourceData]="sourceData"
+      [darkMode]="darkMode"
+    ></app-proposal-components>
+  </div>
+</ng-template>
+
+<!-- <ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="triggerMore"
+  [cdkConnectedOverlayOpen]="openMore"
+  [cdkConnectedOverlayPositions]="positionPopup"
+  [cdkConnectedOverlayWidth]="214"
+  [cdkConnectedOverlayHeight]="200"
+  [cdkConnectedOverlayPanelClass]="'DipContentOverlayPanelClass'"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'DipContentOverlayBackdropClass'"
+  (overlayOutsideClick)="onClickOutside($event)"
+>
+  <div @enterLeaveSmooth style="width: 100%;">
+    <div class="container">
+      <div class="content" #sectionLinks>
+        <p>
+          <a
+            id="dipInfo"
+            class="titleLevelOne"
+            (click)="scrollTo(''); active = 'dipInfo'"
+            [ngClass]="{ active: active === 'dipInfo' }"
+          >
+            DIP{{ dip }}: Info</a
+          >
+
+          <a
+            id="dipDetails"
+            class="titleLevelOne"
+            (click)="scrollTo('details-component'); active = 'dipDetails'"
+            [ngClass]="{ active: active === 'dipDetails' }"
+          >
+            {{ "Details" | translate }}</a
+          >
+
+          <a
+            id="dipPullRequest"
+            class="titleLevelOne"
+            (click)="
+              scrollTo('pull-request-history'); active = 'dipPullRequest'
+            "
+            [ngClass]="{ active: active === 'dipPullRequest' }"
+          >
+            {{ "Pull Requests History" | translate }}</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-template> -->

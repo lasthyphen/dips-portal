@@ -1,0 +1,92 @@
+:host,
+a {
+  color: #b7b7b7;
+  font-size: 14px;
+  font-style: normal;
+  &.social {
+    text-decoration: none;
+  }
+}
+.footer {
+  height: 175px;
+  background-color: #2a2a31;
+  text-align: center;
+  padding-top: 44px;
+  margin-top: 40px;
+
+  &.footer-dark {
+    background-color: #0e1521;
+  }
+}
+
+.logo {
+  margin-bottom: 21px;
+  img {
+    margin: 0 2px;
+  }
+}
+
+.icons {
+  margin-top: 44px;
+  span {
+    margin: 0 15px;
+    font-size: 14px;
+    img {
+      margin-right: 7px;
+      transform: translateY(3px);
+      &.forum {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 310px;
+  color: #748aa1;
+  font-size: 14px;
+  height: auto;
+  text-align: center;
+
+  text-align: center;
+  background: #ffffff;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.16);
+  border-radius: 4px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  transform: translate(-250px, -80px);
+  // left: 290px;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+@media screen and (max-width: 1920px) {
+  .footer {
+    margin-left: -60px;
+    margin-right: -60px;
+    border-radius: 0;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .footer {
+    margin-left: -210px;
+    margin-right: -210px;
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+  }
+}

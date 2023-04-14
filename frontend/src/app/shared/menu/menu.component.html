@@ -1,0 +1,105 @@
+<a
+  (click)="onClick($event)"
+  (mouseover)="open($event)"
+  type="button"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  class="dropdown"
+  [ngClass]="{
+    'language-menu':isLanguageMenu,
+    'dropdown-dark': darkModeService.getDarkMode(),
+    firstLevel: levelMenu === 0 && !isOpen,
+    noFirstLevel: levelMenu !== 0 && !isOpen,
+    firstLevelActive: levelMenu === 0 && isOpen,
+    subMenu: levelMenu !== 0 && !isOpen,
+    subMenuActive: levelMenu !== 0 && isOpen
+  }"
+>
+  <ng-content></ng-content>
+  <div
+    *ngIf="
+      showArrow &&
+      menu &&
+      menu.children &&
+      menu.children.length > 0 &&
+      levelMenu === 0
+    "
+    class="arrowContainer"
+  >
+    <img
+      *ngIf="!(isOpen && darkModeService.getDarkMode())"
+      class="arrow arrow-light"
+      [ngClass]="{ rotateUp: isOpen, rotateDown: !isOpen }"
+      [src]="
+        darkModeService.getDarkMode()
+          ? '../../../../../assets/images/down.svg'
+          : '../../../../../assets/images/down_dark.svg'
+      "
+    />
+    <img
+      *ngIf="isOpen && darkModeService.getDarkMode()"
+      class="arrow rotateUp arrow-dark-active"
+      src="'../../../../../assets/images/down_dark_active.svg"
+    />
+    <img
+      *ngIf="!isOpen"
+      class="arrow arrow-dark rotateDown"
+      [src]="
+        darkModeService.getDarkMode()
+          ? '../../../../../assets/images/down_dark.svg'
+          : '../../../../../assets/images/down.svg'
+      "
+    />
+  </div>
+  <div
+    *ngIf="menu && menu.children && menu.children.length > 0 && levelMenu > 0"
+    class="submenuArrow"
+  ></div>
+</a>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayHasBackdrop]="levelMenu === 0 ? true : false"
+  (backdropClick)="onClickedBackdrop()"
+  [cdkConnectedOverlayPanelClass]="'panelClass'"
+  [cdkConnectedOverlayPositions]="position"
+
+>
+  <div
+    [ngClass]="{
+      'language-menu':isLanguageMenu,
+      'dropdown-content-first-level': levelMenu === 0,
+      'dropdown-content': levelMenu > 0,
+      firstFadeInMenuDownAnimation: levelMenu === 0,
+      fadeInMenuDownAnimation: yDirection === 'down' && levelMenu != 0,
+      fadeInMenuUpAnimation: yDirection === 'up' && levelMenu != 0,
+      'dropdown-content-dark': darkModeService.getDarkMode()
+    }"
+
+  >
+    <app-menu
+      *ngFor="let child of menu.children; let i = index"
+      [menu]="child"
+      (clickedBackdrop)="closeMenu()"
+      [levelMenu]="levelMenu + 1"
+      (opened)="onOpened(i)"
+      [index]="i"
+      [openedIndex]="openedIndexChild"
+      [isOpen]="openedIndexChild === i"
+      [attr.data-cy]="'menu-'+child.id"
+    >
+      <span
+        *ngIf="child.img"
+        class="imageMenuWrapper"
+        [ngClass]="{ 'imageMenuWrapperDark': darkModeService.getDarkMode(),
+        'selected-language':child.activeLangue }"
+        >
+        <!-- <img [src]="child.img" class="imageMenu" /> -->
+        {{ child.name }}</span
+      >
+      <span *ngIf="!child.img">{{ child.name }}</span>
+    </app-menu>
+  </div>
+</ng-template>

@@ -1,0 +1,138 @@
+<ng-container *ngIf="!dipsetMode && !multipleQueries">
+  <app-news></app-news>
+</ng-container>
+
+<div
+  class="container"
+  [ngClass]="{ 'list-page-container-dark': darkModeService.getDarkMode() }"
+>
+  <p
+    data-cy="title"
+    class="title"
+    [ngClass]="{
+      hide: mobileSearch,
+      'title-dark': darkModeService.getDarkMode()
+    }"
+  >
+    {{ (dipsetMode ? "DIP Sets" : activeMenuLinkName) | translate }}
+  </p>
+  <div
+    class="filtering"
+    [ngClass]="{
+      row: mobileSearch || !mobileView,
+      'row-closed-input': !mobileSearch
+    }"
+  >
+    <app-md-checkbox-mobile
+      style="display: none"
+      *ngIf="!mobileSearch"
+      [checkInput]="dipsetMode"
+      [imageNoChecked]="'assets/images/subproposals-mode-no-checked.svg'"
+      [imageChecked]="'assets/images/subproposals-mode-checked.svg'"
+      [ngClass]="{ hide: mobileSearch }"
+      (checked)="onCheckedDipsetMode($event)"
+    ></app-md-checkbox-mobile>
+    <app-search-mobile
+      *ngIf="!multipleQueries"
+      class="mobile"
+      (send)="onSendSearch($event)"
+      (open)="onOpenMobileSearch($event)"
+      [value]="search"
+      [showListSearch]="showListSearch"
+      [listSearchItems]="listSearchDip"
+      (loadMoreDipSuggestions)="onLoadMoreDipsSuggestions()"
+      [loadingDipsSuggestions]="loadingDipsSuggestions"
+      [error]="sintaxError"
+      [errorMessage]="errorMessage"
+      [placeHolder]="'e.g $ AND(#process, #dip-set)'"
+      (clickSearchItem)="onNavigateToDipDetails($event)"
+      [darkMode]="darkModeService.getDarkMode()"
+    >
+    </app-search-mobile>
+    <app-order-mobile
+      *ngIf="!multipleQueries"
+      class="mobile"
+      (sendOrder)="onSendOrder($event)"
+      [orderByField]="orderObj.field"
+      [orderDirection]="orderObj.direction"
+    ></app-order-mobile>
+    <app-md-checkbox
+      style="display: none"
+      *ngIf="dipsetMode"
+      [label]="'DIPset Mode'"
+      (checked)="onCheckedDipsetMode($event)"
+      [checkInput]="dipsetMode"
+    ></app-md-checkbox>
+
+    <app-md-checkbox
+      *ngIf="showHideParentCheckbox && !dipsetMode"
+      style="margin-right: 10px;"
+      [label]="'Hide Parents'"
+      (checked)="onCheckedHideParents($event)"
+      [checkInput]="hideParentValue"
+      data-cy="hide-parents-checkbox"
+    ></app-md-checkbox>
+
+    <app-md-checkbox
+      *ngIf="!showHideParentCheckbox && multipleQueries && !dipsetMode"
+      style="margin-right: 10px"
+      [label]="'Hide Parents'"
+      (checked)="onCheckedHideParents($event)"
+      [checkInput]="hideParentValue"
+      data-cy="hide-parents-checkbox"
+    ></app-md-checkbox>
+
+    <app-search
+      *ngIf="!multipleQueries"
+      class="no-mobile"
+      (send)="onSendSearch($event)"
+      [showListSearch]="showListSearch"
+      [value]="search"
+      [listSearchItems]="listSearchDip"
+      (loadMoreDipSuggestions)="onLoadMoreDipsSuggestions()"
+      [loadingDipsSuggestions]="loadingDipsSuggestions"
+      [error]="sintaxError"
+      [errorMessage]="errorMessage"
+      [placeHolder]="'e.g $ AND(#process, #dip-set)'"
+      (clickSearchItem)="onNavigateToDipDetails($event)"
+      [darkMode]="darkModeService.getDarkMode()"
+    >
+    </app-search>
+    <app-filter (send)="onSendFilters()" style="display: none"></app-filter>
+  </div>
+</div>
+<app-filter-list
+  [compareFn]="cmpFn"
+  (closedItem)="onCloseFilterItem($event)"
+  (hasItems)="onHasItemsFilterList($event)"
+  [ngStyle]="{ display: showFilterList ? 'block' : 'none' }"
+  #filterList
+></app-filter-list>
+<app-list
+  *ngIf="!dipsetMode && !multipleQueries"
+  [loading]="loading"
+  [moreToLoad]="moreToLoad"
+  [hideParent]="hideParentValue"
+  [dataSource]="dips"
+  [paginationTotal]="total"
+  (send)="onSendPagination()"
+  (sendOrder)="onSendOrder($event)"
+  [showHead]="true"
+  [darkMode]="darkModeService.getDarkMode()"
+></app-list>
+<app-list-dipset-mode
+  *ngIf="dipsetMode"
+  (changeOrder)="changeOrder($event)"
+  [loading]="loading"
+  [error]="sintaxError"
+></app-list-dipset-mode>
+<app-list-multiple-queries
+  [shouldBeExpandedMultiQuery]="shouldBeExpandedMultiQuery"
+  *ngIf="!dipsetMode && multipleQueries"
+  (changeOrder)="changeOrder($event)"
+  [darkMode]="darkModeService.getDarkMode()"
+  [hideParent]="hideParentValue"
+  [statusParameters]="statusParameters"
+>
+</app-list-multiple-queries>
+<app-button-top></app-button-top>

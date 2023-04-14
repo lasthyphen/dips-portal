@@ -1,0 +1,17 @@
+<div
+  *ngIf="flag"
+  [ngClass]="classes"
+  [ngStyle]="{ 'font-size': isOnSubproposal ? '9px' : '12px' }"
+  data-cy="status"
+>
+  {{ value }}
+</div>
+
+<div
+  *ngIf="!flag"
+  [ngClass]="classes"
+  [ngStyle]="{ 'font-size': '9px' }"
+  data-cy="status"
+>
+  {{ value }}
+</div>

@@ -1,0 +1,12 @@
+<div class="container">
+  <p class="title" style="margin-bottom: 10px;">{{'References' | translate}}</p>
+  <div *ngFor="let reference of updatedReferences">
+    <hr />
+    <div class="data-container">
+      <span class="row">
+          <a class="info"   *ngIf="reference.proccesedLink" [href]="reference.proccesedLink" (click)="handleLinkClicked(reference.link); false" >{{ reference.name }}</a>
+          <span class="infoNoLink" *ngIf="!reference.proccesedLink">{{ reference.name }}</span>
+      </span>
+    </div>
+  </div>
+</div>

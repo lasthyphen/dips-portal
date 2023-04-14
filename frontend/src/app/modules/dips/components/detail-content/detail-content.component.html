@@ -1,0 +1,359 @@
+<div class="container" [ngClass]="{ 'container-dark': darkMode }">
+  <div class="row">
+    <div *ngIf="dip && !dip?.proposal">
+      <span *ngIf="dip?.title" class="title-bold">{{ dip?.dipName }}: </span
+      ><span class="no-mobile title"> {{ dip?.title }}</span>
+    </div>
+    <div *ngIf="dip?.proposal">
+      <span *ngIf="dip?.title" class="title-bold">{{ subproposalCode }}: </span
+      ><span class="no-mobile title"> {{ subproposalTitle }}</span>
+    </div>
+    <div *ngIf="mdUrl">
+      <span class="title-bold"
+        >{{ (titleMdFile?.split(":"))[0]
+        }}<span *ngIf="(titleMdFile?.split(':'))[1]">:</span></span
+      ><span class="title"> {{ (titleMdFile?.split(":"))[1] }} </span>
+    </div>
+
+    <div *ngIf="dip" class="row social linksIconsWrapper">
+      <img class="github" src="./assets/images/github_dark.svg" />
+      <a href="{{ gitHubUrl }}/{{ dip?.filename }}" target="_blank">GitHub</a>
+
+      <div class="tooltip">
+        <img class="forum" src="./assets/images/forum.svg" />
+        <a *ngIf="!dip?.forumLink">
+          {{ "Forum" | translate
+          }}<span class="tooltiptext"
+            >{{ "Link to the forum coming soon." | translate }} <br />
+            {{ "Feel free to manually search the DIP number at " | translate
+            }}<br />
+            <a href="https://forum.makerdao.com/" target="_blank"
+              >forum.makerdao.com</a
+            >
+          </span>
+        </a>
+        <a *ngIf="dip?.forumLink" href="{{ dip?.forumLink }}" target="_blank">
+          {{ "Forum" | translate }}
+        </a>
+      </div>
+
+      <div class="tooltip">
+        <img class="votingIcon" src="./assets/images/link-out.svg" />
+        <a *ngIf="!dip?.votingPortalLink">
+          {{ "Voting" | translate
+          }}<span class="tooltiptext"
+            >{{ "Link to the voting coming soon." | translate }}<br />
+            {{ "Feel free to manually search the DIP number at " | translate
+            }}<br />
+            <a href="https://vote.makerdao.com/" target="_blank"
+              >vote.makerdao.com</a
+            >
+          </span>
+        </a>
+        <a
+          *ngIf="dip?.votingPortalLink"
+          href="{{ dip?.votingPortalLink }}"
+          target="_blank"
+        >
+          {{ "Voting" | translate }}
+        </a>
+      </div>
+    </div>
+
+    <div
+      [ngClass]="{ linksIconsWrapperMobile: true, hide: !dip }"
+      cdkOverlayOrigin
+      #triggerMore="cdkOverlayOrigin"
+      (click)="openMore = !openMore"
+      [ngStyle]="{ 'z-index': openMore ? 1001 : 'auto' }"
+    >
+      <svg
+        width="4"
+        height="18"
+        viewBox="0 0 4 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="2"
+          cy="2"
+          r="2"
+          attr.fill="{{ openMore ? '#748AA1' : '#2F80ED' }}"
+        />
+        <circle
+          cx="2"
+          cy="9"
+          r="2"
+          attr.fill="{{ openMore ? '#748AA1' : '#2F80ED' }}"
+        />
+        <circle
+          cx="2"
+          cy="16"
+          r="2"
+          attr.fill="{{ openMore ? '#748AA1' : '#2F80ED' }}"
+        />
+      </svg>
+    </div>
+
+    <div *ngIf="mdUrl" class="row social">
+      <img class="linkIcon" src="./assets/images/open_gray.svg" />
+      <a href="{{ urlOriginal }}" target="_blank">.md File</a>
+    </div>
+  </div>
+  <!-- <div class="mobile title margin-2"> {{dip?.title}}</div> -->
+  <div *ngIf="dip && !dip?.proposal" class="mobile title margin-2">
+    <span class="title"> {{ dip?.title }}</span>
+  </div>
+
+  <div *ngIf="dip?.proposal" class="mobile title margin-2">
+    <span class="title"> {{ subproposalTitle }}</span>
+  </div>
+
+  <hr />
+  <markdown
+    *ngIf="dip && !mdUrl"
+    class="variable-binding"
+    [data]="content"
+    (error)="onError($event)"
+    (ready)="onReady()"
+  ></markdown>
+  <markdown
+    *ngIf="!dip && mdUrl"
+    class="variable-binding"
+    [src]="mdUrl"
+    (error)="onError($event)"
+    (ready)="onReady()"
+  ></markdown>
+</div>
+
+<ng-template #preview let-data>
+  <section
+    class="preview"
+    [ngClass]="{
+      fadeInFromDown: triangleUp,
+      fadeInFromUp: !triangleUp,
+      'preview-dark': darkMode,
+      'not-preview-dark': !darkMode,
+      'hiddenSmartLinks':(data.dipName+data.componentCode===linkSelect)
+    }"
+    #previewRef
+  >
+    <div
+     [ngClass]="{'smartLinksContainer': (data.dipName+data.componentCode!==linkSelect)}"
+      *ngIf="
+        data.typeOfView === 'dipComponent' &&
+        data.components &&
+        data.components[0] &&
+        data.components[0].cName
+      "
+    >
+      <div class="dipComponentDipNameContainer">
+        <div class="dipComponentLogoContainer">
+          <img
+            class="dipComponentLogo"
+            [src]="
+              darkMode
+                ? './assets/images/makerLogo_dark.svg'
+                : './assets/images/makerLogo.svg'
+            "
+          />
+        </div>
+
+        <div class="dipComponentDipName">
+          <span *ngIf="data.dipName" class="spanCodeDip"
+            >{{ data.dipName }}:</span
+          >
+          {{ data.title }}
+        </div>
+      </div>
+
+      <div class="dipComponentDipSumary">
+        <div class="rectangleContainer">
+          <div class="thinRectangle"></div>
+        </div>
+        <div class="dipSumary">
+          <markdown [data]="data.sentenceSummary"></markdown>
+        </div>
+      </div>
+      <div class="dipComponentTitleContainer">
+        <div class="rectangleContainer">
+          <div class="thinRectangle"></div>
+          <img
+            class="dipComponentLogo"
+            [src]="
+              darkMode
+                ? '../assets/images/dipComponentLogo_dark.svg'
+                : '../assets/images/dipComponentLogo.svg'
+            "
+          />
+        </div>
+        <div class="dipComponentTitle">
+          <span *ngIf="data.componentCode" class="spanCodeComponent"
+            >{{ data.componentCode }}:</span
+          >
+          {{ data.components[0].cTitle }}
+        </div>
+      </div>
+      <div class="dipComponenSumary">
+        <div class="rectangleContainer">
+          <div class="fadeThinRectangle"></div>
+        </div>
+        <div class="dipComponentSumary">
+          <markdown [data]="data.components[0].cBody"></markdown>
+        </div>
+      </div>
+      <div
+        [ngClass]="{
+          triangleUp: triangleUp,
+          triangleDown: !triangleUp,
+          centerX: triangleCenter,
+          left: !triangleCenter && triangleLeft,
+          right: !triangleCenter && !triangleLeft
+        }"
+      ></div>
+    </div>
+
+    <div
+      *ngIf="data.typeOfView === 'dipName'"
+      class="smartLinksContainer dipName"
+    >
+      <div class="dipComponentDipNameContainer">
+        <div class="dipComponentLogoContainer">
+          <img
+            class="dipComponentLogo"
+            [src]="
+              darkMode
+                ? './assets/images/makerLogo_dark.svg'
+                : './assets/images/makerLogo.svg'
+            "
+          />
+        </div>
+
+        <div class="dipName">
+          <span *ngIf="data.dipName" class="spanCodeDip"
+            >{{ data.dipName }}:</span
+          >
+          {{ data.title }}
+        </div>
+      </div>
+      <div class="dipComponenSumary">
+        <div class="rectangleContainer">
+          <div class="fadeThinRectangle"></div>
+        </div>
+        <div class="dipSumary">
+          <markdown [data]="data.sentenceSummary"></markdown>
+        </div>
+      </div>
+      <div
+        [ngClass]="{
+          triangleUp: triangleUp,
+          triangleDown: !triangleUp,
+          centerX: triangleCenter,
+          left: !triangleCenter && triangleLeft,
+          right: !triangleCenter && !triangleLeft
+        }"
+      ></div>
+    </div>
+
+    <div
+      *ngIf="data.typeOfView === 'dipSubproposal'"
+      class="smartLinksContainer"
+    >
+      <div class="dipComponentDipNameContainer">
+        <div class="dipComponentLogoContainer">
+          <img
+            class="dipComponentLogo"
+            src="./assets/images/dipsSubProposalLogo.svg"
+          />
+        </div>
+
+        <div class="dipName">
+          {{ data.title }}
+        </div>
+      </div>
+      <div class="dipComponenSumary">
+        <div class="rectangleContainer"></div>
+        <div class="dipSumary">
+          <markdown [data]="data.sentenceSummary"></markdown>
+        </div>
+      </div>
+
+      <div
+        [ngClass]="{
+          triangleUp: triangleUp,
+          triangleDown: !triangleUp,
+          centerX: triangleCenter,
+          left: !triangleCenter && triangleLeft,
+          right: !triangleCenter && !triangleLeft
+        }"
+      ></div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="triggerMore"
+  [cdkConnectedOverlayOpen]="openMore"
+  [cdkConnectedOverlayPositions]="positionPopup"
+  [cdkConnectedOverlayPanelClass]="'IconsOverlayPanelClass'"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayWidth]="'auto'"
+  [cdkConnectedOverlayHeight]="'auto'"
+  [cdkConnectedOverlayBackdropClass]="'DipContentOverlayBackdropClass'"
+  (overlayOutsideClick)="onClickOutside($event)"
+>
+  <div
+    @enterLeaveSmooth
+    style="width: 100%"
+    class="container popup"
+    [ngClass]="{ 'popup-dark': darkMode }"
+  >
+    <div class="menuContainer row social">
+      <div class="tooltip">
+        <img class="github" src="./assets/images/github_dark.svg" />
+        <a href="{{ gitHubUrl }}/{{ dip?.filename }}" target="_blank">GitHub</a>
+      </div>
+
+      <div class="tooltip">
+        <img class="forum" src="./assets/images/forum.svg" />
+        <a *ngIf="!dip?.forumLink" class="textGray">
+          {{ "Forum" | translate
+          }}<span class="tooltiptext"
+            >{{ "Link to the forum coming soon." | translate }} <br />
+            {{ "Feel free to manually search the DIP number at " | translate
+            }}<br />
+            <a href="https://forum.makerdao.com/" target="_blank"
+              >forum.makerdao.com</a
+            >
+          </span>
+        </a>
+        <a *ngIf="dip?.forumLink" href="{{ dip?.forumLink }}" target="_blank">
+          {{ "Forum" | translate }}
+        </a>
+      </div>
+
+      <div class="tooltip">
+        <img class="votingIcon" src="./assets/images/link-out.svg" />
+        <a *ngIf="!dip?.votingPortalLink" class="textGray">
+          {{ "Voting" | translate
+          }}<span class="tooltiptext"
+            >{{ "Link to the voting coming soon." | translate }}<br />
+            {{ "Feel free to manually search the DIP number at " | translate
+            }}<br />
+            <a href="https://vote.makerdao.com/" target="_blank"
+              >vote.makerdao.com</a
+            >
+          </span>
+        </a>
+        <a
+          *ngIf="dip?.votingPortalLink"
+          href="{{ dip?.votingPortalLink }}"
+          target="_blank"
+        >
+          {{ "Voting" | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-template>

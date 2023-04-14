@@ -1,0 +1,260 @@
+{
+  "items": [
+    {
+      "_id": "63176fb6a7aebc1c5015401c",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP1.md",
+      "dipName": "DIP4c2SP1",
+      "sentenceSummary": "Removing the requirement that Domain Greenlight process (DIP8) be completed before Community Greenlight Polls take place.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP1: DIP6 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0001"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015401d",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP10.md",
+      "dipName": "DIP4c2SP10",
+      "sentenceSummary": "DIP4c2-SP10 amends DIP0 to be compatible with the Domain Framework DIP Set.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP10: DIP0 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0010"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015401e",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP11.md",
+      "dipName": "DIP4c2SP11",
+      "sentenceSummary": "DIP4c2-SP11 amends DIP24 to be compatible with the Core Unit Operating Model DIP Set.",
+      "status": "RFC",
+      "title": "DIP4c2-SP11: DIP24 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0011"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015401f",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP12.md",
+      "dipName": "DIP4c2SP12",
+      "sentenceSummary": "DIP4c2-SP12 amends DIP16 to make it compatible with the Core Unit Operating Model DIP Set.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP12: DIP16 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0012"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154020",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP13.md",
+      "dipName": "DIP4c2SP13",
+      "sentenceSummary": "DIP4c2-SP13 amends DIP0 to be more precise in regards to the management of DIP Sets.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP13: DIP0 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0013"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154021",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP14.md",
+      "dipName": "DIP4c2SP14",
+      "sentenceSummary": "DIP4c2-SP14 amends DIP0 with the intent of making it easier to read and navigate.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP14: DIP0 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0014"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154022",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP15.md",
+      "dipName": "DIP4c2SP15",
+      "status": "RFC",
+      "title": "DIP4c2-SP15: Core Unit Offboarding Process Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0015"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154023",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP16.md",
+      "dipName": "DIP4c2SP16",
+      "status": "Accepted",
+      "title": "DIP4c2-SP16: DIP55 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0016"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154024",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP17.md",
+      "dipName": "DIP4c2SP17",
+      "status": "Accepted",
+      "title": "DIP4c2-SP17: Rapid Payment for Small Bug Bounties (DIP64, DIP40c3-SP42 Amendment)",
+      "votingPortalLink": "https://vote.makerdao.com/polling/QmRdVByP?network=mainnet#poll-detail",
+      "forumLink": "https://forum.makerdao.com/t/dip4c2-sp17-rapid-payment-for-small-bug-bounties-dip64-dip40c3-sp42-amendment/12869",
+      "dipCodeNumber": "DIP0004c0002SP0017"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154025",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP18.md",
+      "dipName": "DIP4c2SP18",
+      "status": "Accepted",
+      "title": "DIP4c2-SP18: DIP7 Amendments",
+      "votingPortalLink": "https://vote.makerdao.com/polling/QmVAD1ZD",
+      "forumLink": "https://forum.makerdao.com/t/dip4c2-sp18-dip7-amendments/13788",
+      "dipCodeNumber": "DIP0004c0002SP0018"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154026",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP19.md",
+      "dipName": "DIP4c2SP19",
+      "status": "Accepted",
+      "title": "Budget Framework Replacement",
+      "votingPortalLink": "https://vote.makerdao.com/polling/QmXVjbWG",
+      "forumLink": "https://forum.makerdao.com/t/dip4c2-sp19-dip40-budget-process-amendment/14250",
+      "dipCodeNumber": "DIP0004c0002SP0019"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154027",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP2.md",
+      "dipName": "DIP4c2SP2",
+      "sentenceSummary": "DIP4c2-SP2 amends DIP8 so that the Domain Greenlight process occur after the Community Greenlight Poll (DIP9).",
+      "status": "Accepted",
+      "title": "DIP4c2-SP2: DIP8 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0002"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154028",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP20.md",
+      "dipName": "DIP4c2SP20",
+      "status": "RFC",
+      "title": "DIP4c2-SP20: DIP16 Amendments",
+      "forumLink": "https://forum.makerdao.com/t/dip4c2-sp20-dip16-amendments/14980",
+      "dipCodeNumber": "DIP0004c0002SP0020"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154029",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP21.md",
+      "dipName": "DIP4c2SP21",
+      "status": "RFC",
+      "title": "DIP4c2-SP21: Add Retrospection Process to prune unused DIPs",
+      "dipCodeNumber": "DIP0004c0002SP0021"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015402a",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP3.md",
+      "dipName": "DIP4c2SP3",
+      "sentenceSummary": "DIP4c2-SP3 rearranges the collateral onboarding process to allow DIP9 to occur before DIP8.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP3: DIP9 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0003"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015402b",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP4.md",
+      "dipName": "DIP4c2SP4",
+      "sentenceSummary": "DIP4c2-SP4 allows collateral onboarding to operate without having General Risk Model ratified through DIP11.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP4: DIP12 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0004"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015402c",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP5.md",
+      "dipName": "DIP4c2SP5",
+      "sentenceSummary": "DIP4c2-SP5 amends DIP12 to remove dependencies on DIP6, DIP8, and DIP9.",
+      "status": "Rejected",
+      "title": "DIP4c2-SP5: DIP12 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0005"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015402d",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP6.md",
+      "dipName": "DIP4c2SP6",
+      "sentenceSummary": "DIP4c2-SP6 adds a calendar exception: no governance cycle in the month of December.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP6: Calendar Exceptions",
+      "dipCodeNumber": "DIP0004c0002SP0006"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015402e",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP7.md",
+      "dipName": "DIP4c2SP7",
+      "sentenceSummary": "DIP4c2-SP7 allows DIP amendments to use the weekly governance cycle for the first three months after a DIP has passed. It also allows multiple DIP amendments/removals in one proposal.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP7: DIP4 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0007"
+    },
+    {
+      "_id": "63176fb6a7aebc1c5015402f",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c2-Subproposals/DIP4c2-SP8.md",
+      "dipName": "DIP4c2SP8",
+      "sentenceSummary": "DIP4c2-SP8 introduces a second poll date on the 1st Monday of each month.",
+      "status": "Accepted",
+      "title": "DIP4c2-SP8: DIP 9 Amendments",
+      "dipCodeNumber": "DIP0004c0002SP0008"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154030",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c3-Subproposals/DIP4c3-SP1.md",
+      "dipName": "DIP4c3SP1",
+      "status": "Accepted",
+      "title": "DIP4c3-SP1: Amend DIP64 to clarify critical web bounty amount",
+      "votingPortalLink": "https://vote.makerdao.com/polling/QmQD5PDm#poll-detail",
+      "forumLink": "https://forum.makerdao.com/t/dip4c3-sp1-amend-dip64-to-clarify-critical-web-bounty-amount/13439",
+      "dipCodeNumber": "DIP0004c0003SP0001"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154031",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c3-Subproposals/DIP4c3-SP2.md",
+      "dipName": "DIP4c3SP2",
+      "status": "Accepted",
+      "title": "DIP4c3-SP2: DIP62 Amendments",
+      "forumLink": "https://forum.makerdao.com/t/dip4c3-sp2-amend-dip62-following-mkt-001-offboarding/13779",
+      "dipCodeNumber": "DIP0004c0003SP0002"
+    },
+    {
+      "_id": "63176fb6a7aebc1c50154032",
+      "proposal": "DIP4",
+      "dip": 4,
+      "filename": "DIP4/DIP4c3-Subproposals/DIP4c3-SP3.md",
+      "dipName": "DIP4c3SP3",
+      "status": "Accepted",
+      "title": "DIP4c3-SP3: Amend DIP64 to allow more flexibility in scope",
+      "votingPortalLink": "",
+      "forumLink": "https://forum.makerdao.com/t/dip4c3sp3-amend-dip64-to-allow-more-flexibility-in-scope/14200",
+      "dipCodeNumber": "DIP0004c0003SP0003"
+    }
+  ],
+  "total": 23
+}
